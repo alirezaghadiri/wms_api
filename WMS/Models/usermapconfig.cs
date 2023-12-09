@@ -16,6 +16,25 @@ namespace WMS.Models
         public virtual ICollection<product> ChangedProduct { get; set; }
 
 
+        //Bin
+        public virtual ICollection<bin> DeletedBin { get; set; }
+        public virtual ICollection<bin> CreatedBin { get; set; }
+        public virtual ICollection<bin> ChangedBin { get; set; }
+
+
+        //location
+        public virtual ICollection<Location> DeletedLocation { get; set; }
+        public virtual ICollection<Location> CreatedLocation { get; set; }
+        public virtual ICollection<Location> ChangedLocation { get; set; }
+
+
+        //IOproduct
+        public virtual ICollection<IIOProduct> DeletedIOproduct { get; set; }
+        public virtual ICollection<IIOProduct> CreatedIOproduct { get; set; }
+        public virtual ICollection<IIOProduct> ChangedIOproduct { get; set; }
+
+
+
 
         public static EntityTypeConfiguration<user> Map()
         {

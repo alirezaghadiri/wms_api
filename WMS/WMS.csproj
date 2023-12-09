@@ -178,6 +178,7 @@
     </Compile>
     <Compile Include="IRepository\IProduct.cs" />
     <Compile Include="IRepository\IUser.cs" />
+    <Compile Include="Models\bin.cs" />
     <Compile Include="Models\DTO\productDto.cs" />
     <Compile Include="Models\DTO\userDto.cs" />
     <Compile Include="Models\product.cs" />

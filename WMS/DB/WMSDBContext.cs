@@ -14,7 +14,10 @@ namespace WMS.DB
             Database.SetInitializer(new DbInitializer());
         }
         public DbSet<user> Users { get; set; }
+        public DbSet<bin> Bins { get; set; }
         public DbSet<product> products { get; set; }
+        public DbSet<IIOProduct> IOProducts { get; set; }
+        public DbSet<Location> locations { get; set; }
 
     }
 
@@ -23,14 +26,23 @@ namespace WMS.DB
         protected override void Seed(WMSDBContext context)
         {
             var contaxt = new WMSDBContext();
+            contaxt.Users.Add(new user()
+            {
+                First_Name = "Supper",
+                Last_Name = "user",
+                id = 1,
+                active = true,
+                username = "administrator"
+            });
 
-            user user = new user();
-            user.First_Name = "رضا";
-            user.Last_Name = "حسن پور";
-            user.id = 1;
-            user.active = true;
-            user.username = "rhasanpor";
-            contaxt.Users.Add(user);
+            contaxt.Users.Add(new user
+            {
+                First_Name = "رضا",
+                Last_Name = "حسن پور",
+                id = 2,
+                active = true,
+                username = "rhasanpor"
+            });
             contaxt.SaveChanges();
 
 

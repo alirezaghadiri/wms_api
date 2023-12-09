@@ -33,6 +33,12 @@ namespace WMS.Models
         public DateTime? ChangedDate { get; set; }
         public int? ChangedByUserId { get; set; }
 
+        //bin
+        public virtual ICollection<bin> bins { get; set; }
+
+        //IOprodouct
+        public virtual ICollection<IIOProduct> IOProducts { get; set; }
+
         public static EntityTypeConfiguration<product> Map()
         {
             var map = new EntityTypeConfiguration<product>();
