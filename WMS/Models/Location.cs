@@ -35,7 +35,7 @@ namespace WMS.Models
         public virtual ICollection<bin> bins { get; set; }
 
         //IOprodouct
-        public virtual ICollection<IIOProduct> IOProducts { get; set; }
+        public virtual ICollection<IOProduct> IOProducts { get; set; }
 
 
         public static EntityTypeConfiguration<Location> Map()

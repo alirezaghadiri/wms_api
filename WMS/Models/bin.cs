@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
@@ -11,12 +12,13 @@ namespace WMS.Models
     public class bin
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int binKey { get; set; }
         public virtual product Product { get; set; }
-        public int product_id { get; set; }
+        public int productid { get; set; }
 
         public virtual Location location { get; set; }
-        public int location_id { get; set; }
+        public int locationid { get; set; }
         public string Description { get; set; }
         public bool isactive { get; set; }
 
@@ -41,8 +43,8 @@ namespace WMS.Models
         {
             var map = new EntityTypeConfiguration<bin>();
             map.Property(P => P.Description).HasMaxLength(1000);
-            map.HasRequired(B => B.Product).WithMany(P=>P.bins).HasForeignKey(B => B.product_id);
-            map.HasRequired(B => B.location).WithMany(l => l.bins).HasForeignKey(B => B.location_id);
+            map.HasRequired(B => B.Product).WithMany(P=>P.bins).HasForeignKey(B => B.productid);
+            map.HasRequired(B => B.location).WithMany(l => l.bins).HasForeignKey(B => B.locationid);
             map.HasOptional(B => B.DeletedUser).WithMany(U => U.DeletedBin).HasForeignKey(P => P.DeletedByUserId);
             map.HasRequired(B => B.CreatedUser).WithMany(U => U.CreatedBin).HasForeignKey(P => P.CreatedByUserId).WillCascadeOnDelete(false);
             map.HasOptional(B => B.ChangedUser).WithMany(U => U.ChangedBin).HasForeignKey(P => P.ChangedByUserId);

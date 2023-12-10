@@ -69,7 +69,7 @@ namespace WMS.Repository
 
         public ICollection<product> GetAll()
         {
-            return contaxt.products.ToList();
+            return contaxt.products.Where(p=>p.Deleted==false).ToList();
         }
 
         public bool Update(product _product)

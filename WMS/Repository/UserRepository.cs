@@ -61,7 +61,6 @@ namespace WMS.Repository
                 _contaxt.First_Name = _user.First_Name;
                 _contaxt.Last_Name = _user.Last_Name;
                 _contaxt.active=_user.active;
-                _contaxt.active=_user.active;
                 contaxt.SaveChanges();
                 return true;
             }

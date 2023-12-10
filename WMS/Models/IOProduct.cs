@@ -13,7 +13,7 @@ namespace WMS.Models
         public int productId { get; set; }
         public virtual Location location { get; set; }
         public int locationid { get; set; }
-        public DateTime Iputdate { get; set; }
+        public DateTime Inputdate { get; set; }
         public bool flag { get; set; }
         public string Description { get; set; }
 
@@ -33,9 +33,9 @@ namespace WMS.Models
         public DateTime? ChangedDate { get; set; }
         public int? ChangedByUserId { get; set; }
 
-        public static EntityTypeConfiguration<IIOProduct> Map()
+        public static EntityTypeConfiguration<IOProduct> Map()
         {
-            var map = new EntityTypeConfiguration<IIOProduct>();
+            var map = new EntityTypeConfiguration<IOProduct>();
             map.Property(l => l.Description).HasMaxLength(1000);
             map.HasRequired(B => B.Product).WithMany(P => P.IOProducts).HasForeignKey(B => B.productId);
             map.HasRequired(B => B.location).WithMany(l => l.IOProducts).HasForeignKey(B => B.locationid);

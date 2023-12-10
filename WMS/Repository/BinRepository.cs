@@ -38,8 +38,8 @@ namespace WMS.Repository
             {
                 var _contaxt = contaxt.Bins.Where(p => p.binKey == _Bin.binKey).FirstOrDefault();
                 _contaxt.Description = _Bin.Description;
-                _contaxt.location = _Bin.location;
-                _contaxt.product_id = _Bin.product_id;
+                _contaxt.locationid = _Bin.locationid;
+                _contaxt.productid = _Bin.productid;
                 _contaxt.isactive = _Bin.isactive;
                 _contaxt.ChangedDate = DateTime.Now;
                 _contaxt.ChangedByUserId = 1;

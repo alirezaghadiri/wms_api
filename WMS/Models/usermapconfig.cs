@@ -29,11 +29,12 @@ namespace WMS.Models
 
 
         //IOproduct
-        public virtual ICollection<IIOProduct> DeletedIOproduct { get; set; }
-        public virtual ICollection<IIOProduct> CreatedIOproduct { get; set; }
-        public virtual ICollection<IIOProduct> ChangedIOproduct { get; set; }
+        public virtual ICollection<IOProduct> DeletedIOproduct { get; set; }
+        public virtual ICollection<IOProduct> CreatedIOproduct { get; set; }
+        public virtual ICollection<IOProduct> ChangedIOproduct { get; set; }
 
-
+        //Role
+        public virtual ICollection<Role> Roles { get; set; }
 
 
         public static EntityTypeConfiguration<user> Map()
@@ -42,6 +43,7 @@ namespace WMS.Models
             map.Property(U => U.username).HasMaxLength(100).IsRequired();
             map.Property(U => U.password).HasMaxLength(100).IsRequired();
             map.Property(U => U.PasswordSalt).HasMaxLength(100).IsRequired();
+            map.HasMany(U => U.Roles).WithMany(R => R.Users).Map(_map => _map.MapLeftKey("UserId").MapRightKey("RoleId").ToTable("UsersRoles"));
             map.Property(U => U.username).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("Ix_Username_Unique") { IsUnique = true }));
             return map;
         }

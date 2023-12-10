@@ -14,9 +14,10 @@ namespace WMS.DB
             Database.SetInitializer(new DbInitializer());
         }
         public DbSet<user> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<bin> Bins { get; set; }
         public DbSet<product> products { get; set; }
-        public DbSet<IIOProduct> IOProducts { get; set; }
+        public DbSet<IOProduct> IOProducts { get; set; }
         public DbSet<Location> locations { get; set; }
 
     }
@@ -26,13 +27,16 @@ namespace WMS.DB
         protected override void Seed(WMSDBContext context)
         {
             var contaxt = new WMSDBContext();
+            var slat = Guid.NewGuid().ToString("N");
             contaxt.Users.Add(new user()
             {
                 First_Name = "Supper",
                 Last_Name = "user",
                 id = 1,
                 active = true,
-                username = "administrator"
+                username = "administrator",
+                PasswordSalt = slat,
+                password = utiles.Tools.hashedPassword("258", slat)
             });
 
             contaxt.Users.Add(new user

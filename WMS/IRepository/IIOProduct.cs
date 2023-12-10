@@ -10,8 +10,8 @@ namespace WMS.IRepository
     {
         bool Add(IOProduct _IOProduct);
         bool Update(IOProduct _IOProduct);
-        bool changeLocation(int id, int newLocationid);
-        bool Delete (int id);
+        bool changeLocation(Guid id, int newLocationid);
+        bool Delete (Guid id);
         ICollection<IOProduct> GetAll();
     }
 }
