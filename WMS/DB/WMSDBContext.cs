@@ -38,18 +38,33 @@ namespace WMS.DB
                 PasswordSalt = slat,
                 password = utiles.Tools.hashedPassword("258", slat)
             });
-
+            slat = Guid.NewGuid().ToString("N");
             contaxt.Users.Add(new user
             {
                 First_Name = "رضا",
                 Last_Name = "حسن پور",
                 id = 2,
                 active = true,
-                username = "rhasanpor"
+                username = "rhasanpor",
+                PasswordSalt = slat,
+                password = utiles.Tools.hashedPassword("", slat)
+            });
+
+
+            contaxt.SaveChanges();
+            contaxt.Roles.Add(new Role()
+            {
+                RoleId = 1,
+                Title = "admin",
+                Users = contaxt.Users.Where(p => p.username == "administrator").ToList()
+            });
+            contaxt.Roles.Add(new Role()
+            {
+                RoleId = 1,
+                Title = "lift",
+                Users = contaxt.Users.Where(p => p.username != "administrator").ToList()
             });
             contaxt.SaveChanges();
-
-
             base.Seed(context);
         }
     }

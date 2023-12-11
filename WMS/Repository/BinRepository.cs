@@ -20,8 +20,8 @@ namespace WMS.Repository
         {
             try
             {
-                _Bin.CreatedDate = DateTime.Now;
-                _Bin.CreatedByUserId = 1;
+               _Bin.CreatedDate = DateTime.Now;
+               _Bin.CreatedByUserId = 1;
                 contaxt.Bins.Add(_Bin);
                 contaxt.SaveChanges();
                 return true;
@@ -42,7 +42,7 @@ namespace WMS.Repository
                 _contaxt.productid = _Bin.productid;
                 _contaxt.isactive = _Bin.isactive;
                 _contaxt.ChangedDate = DateTime.Now;
-                _contaxt.ChangedByUserId = 1;
+               _contaxt.ChangedByUserId = 1;
                 contaxt.SaveChanges();
                 return true;
             }
@@ -72,7 +72,7 @@ namespace WMS.Repository
                 var _contaxt = contaxt.Bins.Where(p => p.binKey == id).FirstOrDefault();
                 _contaxt.Deleted = true;
                 _contaxt.DeletedByUserId = 1;
-                _contaxt.DeletedDate = DateTime.Now;
+               _contaxt.DeletedDate = DateTime.Now;
                 contaxt.SaveChanges();
                 return true;
             }
@@ -88,7 +88,7 @@ namespace WMS.Repository
             {
                 var _contaxt = contaxt.Bins.Where(p => p.binKey == id).FirstOrDefault();
                 _contaxt.isactive = !_contaxt.isactive;
-                _contaxt.ChangedDate = DateTime.Now;
+               _contaxt.ChangedDate = DateTime.Now;
                 _contaxt.ChangedByUserId = 1;
                 contaxt.SaveChanges();
                 return true;

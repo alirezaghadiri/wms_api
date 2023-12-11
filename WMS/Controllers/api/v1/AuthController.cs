@@ -8,7 +8,8 @@ using System.Net.Http.Headers;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
-using WMS.Auth;
+using wms.Model;
+using WMS.Models;
 using WMS.Models;
 using WMS.Models.DTO;
 using dto = WMS.Models.DTO;
@@ -22,7 +23,8 @@ namespace WMS.Controllers.api.v1
         public AuthController()
         {
             _userRepo = new Repository.UserRepository();
-            _mapper  = new MapperConfiguration(cfg => {
+            _mapper = new MapperConfiguration(cfg =>
+            {
                 cfg.AddMaps(typeof(WMS.DB.AutoMapperProfiles.CustemProfiles));
             }).CreateMapper();
         }
@@ -39,32 +41,47 @@ namespace WMS.Controllers.api.v1
                         if (user == null)
                         {
 
-                            AuthenticationHeaderValue authorization = request.Headers.Authorization;
+
                             return Ok("nok");
                         }
                         else
                         {
                             if (user.password == utiles.Tools.hashedPassword(model.password, user.PasswordSalt))
                             {
+                              
+                                TokenResponseDTO Response = new TokenResponseDTO()
+                                {
+                                    AccessToken = security.TokenGenretor.CreateAccessToken(user, DateTime.Now.AddDays(2)),
+                                    status = true,
+                                    title = "عملیلت موفق",
+                                    message = "عملیات با موفقیت آنجام گردید",
+                                };
 
-                                var identity = new GenericIdentity(user.username);
-                                var roles = user.Roles.Select(p => p.Title).ToArray();
-                                var principal = new GenericPrincipal(identity, roles);
-                                HttpContext.Current.User = principal;
-                                return Ok("ok");
+                                return Ok(Response);
                             }
                             else
                             {
-                                return Ok("nok");
+                                return Ok(new ReturnMessage()
+                                {
+                                    title = "عملیات ناموفق",
+                                    message = "خطا در انجام عملیات "
+                                });
                             }
                         }
                     }
-                default: { return BadRequest(" bad GrantType"); }
+                default:
+                    {
+                        return Ok(new ReturnMessage()
+                        {
+                            title = "عملیات ناموفق",
+                            message = "GrantType نامعتبر "
+                        });
+                    }
             }
 
-            
+
         }
 
-      
+
     }
 }

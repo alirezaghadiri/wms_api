@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Web;
 
 namespace WMS.Models
@@ -13,6 +14,7 @@ namespace WMS.Models
         public int RoleId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        [JsonIgnore]
         public virtual ICollection<user> Users { get; set; }
 
         public static EntityTypeConfiguration<Role> Map()
